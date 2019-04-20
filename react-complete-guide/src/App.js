@@ -23,6 +23,16 @@ class App extends Component {
       ]
     });
   }
+
+  customNameChangeHandler = (newName, newCompany) => {
+    this.setState({
+      persons : [
+        {name : newName, company : newCompany},
+        {name : "Matt", company : "Facebook"},
+        {name : "Arthur", company : "Macquarie"}
+      ]
+    });
+  }
 // when ever state value changes, react would re-render the component or rather update the view.
   render() {
     return (
@@ -32,6 +42,7 @@ class App extends Component {
          <Person name = {this.state.persons[2].name} company = {this.state.persons[2].company}> Arthur stay at Sydney. </Person>
 
          <button onClick = {this.nameChangeHandler} > Switch Name </button>
+         <button onClick = {this.customNameChangeHandler.bind(this, "Mr. Nitish Bhushan", "Google HQ")} > Custom Name </button>
       </div>
     );
   }
