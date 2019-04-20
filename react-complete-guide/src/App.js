@@ -11,6 +11,18 @@ class App extends Component {
       {name : "Arthur", company : "DropBox"}
     ]
   }
+ // we call this.setState() to pass the updated object. React will then compare the old
+ // and new value to discover the update and accordingly would update ONLY the changed part. 
+  
+  nameChangeHandler = () => {
+    this.setState({
+      persons : [
+        {name : "Nitish Bhushan", company : "Google"},
+        {name : "Matt", company : "Facebook"},
+        {name : "Arthur", company : "Macquarie"}
+      ]
+    });
+  }
 // when ever state value changes, react would re-render the component or rather update the view.
   render() {
     return (
@@ -18,6 +30,8 @@ class App extends Component {
          <Person name = {this.state.persons[0].name} company = {this.state.persons[0].company}/>
          <Person name = {this.state.persons[1].name} company = {this.state.persons[1].company}/>
          <Person name = {this.state.persons[2].name} company = {this.state.persons[2].company}> Arthur stay at Sydney. </Person>
+
+         <button onClick = {this.nameChangeHandler} > Switch Name </button>
       </div>
     );
   }
