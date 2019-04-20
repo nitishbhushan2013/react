@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 
 import Person from './Person/Person';
 
-const AppFuncComp = () => {
-
+const AppFuncComp = (props) => {
   // first element is orginal property object and second element is method to 
   //update the proeprty.
   const[personState, setPersonState] = useState({
@@ -15,6 +14,7 @@ const AppFuncComp = () => {
   });
 
   const nameChangeHandler = () => {
+    // this call would REPLACES the original state and hence if we have some more attributes in the original state which is not defined here, it will be lost.
     setPersonState({
       persons : [
         {name : "Nitish Bhushan", company : "Google HQ"},

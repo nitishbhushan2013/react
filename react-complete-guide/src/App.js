@@ -27,7 +27,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-         <Person name = {this.state.persons[0].name} company = {this.state.persons[0].company}/>
+         <Person name = {this.state.persons[0].name} company = {this.state.persons[0].company} click = {this.nameChangeHandler}/>
          <Person name = {this.state.persons[1].name} company = {this.state.persons[1].company}/>
          <Person name = {this.state.persons[2].name} company = {this.state.persons[2].company}> Arthur stay at Sydney. </Person>
 
