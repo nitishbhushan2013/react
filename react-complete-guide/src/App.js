@@ -41,8 +41,9 @@ class App extends Component {
          <Person name = {this.state.persons[1].name} company = {this.state.persons[1].company}/>
          <Person name = {this.state.persons[2].name} company = {this.state.persons[2].company}> Arthur stay at Sydney. </Person>
 
-         <button onClick = {this.nameChangeHandler} > Switch Name </button>
+         <button onClick = {this.nameChangeHandler} > Switch Name - first way </button>
          <button onClick = {this.customNameChangeHandler.bind(this, "Mr. Nitish Bhushan", "Google HQ")} > Custom Name </button>
+         <button onClick = { () => this.customNameChangeHandler("Mr. Andrew Kasis", "Macquarie")}> Switch name - second way </button>
       </div>
     );
   }
