@@ -7,7 +7,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-         <Person/>
+         <Person name = "Nitish" company = "Google"/>
+         <Person name = "Matt" company = "Facebook"/>
+         <Person name = "Arthur" company = "DropBox"/>
       </div>
     );
   }
