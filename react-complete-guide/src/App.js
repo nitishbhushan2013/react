@@ -47,14 +47,11 @@ class App extends Component {
     });
   }
 
-  updateNameHandler = (event) => {
-    this.setState({
-      persons : [
-        {name : event.target.value, company : "Google"},
-        {name : "Matt", company : "Facebook"},
-        {name : "Arthur", company : "DropBox"}
-      ]
-    })
+  /*
+  updateNameHandler = (index) => {
+    const persons = [...this.state.persons]; 
+    
+
   }
  
   updateCompanyHandler = (event) => {
@@ -64,6 +61,14 @@ class App extends Component {
         {name : "Matt", company : "Facebook"},
         {name : "Arthur", company : "DropBox"}
       ]
+    })
+  }
+*/
+  deleteUserHandler = (index) => {
+    const persons = [...this.state.persons]; 
+    persons.splice(index,1);
+    this.setState({
+      persons : persons
     })
   }
 
@@ -101,10 +106,13 @@ class App extends Component {
           <div> 
             {
             // curly base indicates that it contains js element or logic
-             this.state.persons.map(person => {
+             this.state.persons.map((person, index) => {
                return <Person 
                   name = {person.name} 
                   company = {person.company}
+                  deleteUser = {() => this.deleteUserHandler(index)}
+                 // updateName = {() => this.updateNameHandler(index, event.target.value)}
+                //  updateCompany = {() => this.updateCompanyHandler(index)}
                 />
              })   
             }
