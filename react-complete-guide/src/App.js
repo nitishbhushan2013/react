@@ -39,7 +39,26 @@ class App extends Component {
     });
   }
 
+  updateNameHandler1 = (event) => {
+    this.setState({
+      persons : [
+        {name : event.target.value, company : "Google"},
+        {name : "Matt", company : "Facebook"},
+        {name : "Arthur", company : "DropBox"}
+      ]
+    })
+  }
  
+  updateCompanyHandler1 = (event) => {
+    this.setState({
+      persons : [
+        {name : "Nitish", company : event.target.value},
+        {name : "Matt", company : "Facebook"},
+        {name : "Arthur", company : "DropBox"}
+      ]
+    })
+  }
+
   updateEmployee = (event) => {
     //alert(event.target.value);
     this.setState({
@@ -50,16 +69,29 @@ class App extends Component {
     });
   }
   
+ 
 
 
 // when ever state value changes, react would re-render the component or rather update the view.
   render() {
+
+    const style ={
+      backgroundColor : 'light green',
+      border : '1px solid blue',
+      margin : '1%',
+     
+      padding : '2px',
+      cursor : 'pointer'
+    }
+
     return (
       <div className="App">
          <Person 
            name = {this.state.persons[0].name} 
            company = {this.state.persons[0].company} 
            click = {this.nameChangeHandler}
+           updateName = {this.updateNameHandler1}
+           updateCompany = {this.updateCompanyHandler1}
          />
 
          <Person 
@@ -71,9 +103,14 @@ class App extends Component {
           name = {this.state.persons[2].name} 
           company = {this.state.persons[2].company}> Arthur stay at Sydney. </Person>
 
-         <button onClick = {this.nameChangeHandler} > Switch Name - first way </button>
-         <button onClick = {this.customNameChangeHandler.bind(this, "Mr. Nitish Bhushan", "Google HQ")} > Custom Name </button>
-         <button onClick = { () => this.customNameChangeHandler("Mr. Andrew Kasis", "Macquarie")}> Switch name - second way </button>
+         <button 
+         style = {style}
+         onClick = {this.nameChangeHandler} > Switch Name - first way 
+         </button>
+         
+         <button style = {style} onClick = {this.customNameChangeHandler.bind(this, "Mr. Nitish Bhushan", "Google HQ")} > Custom Name </button>
+        
+         <button style = {style} onClick = { () => this.customNameChangeHandler("Mr. Andrew Kasis", "Macquarie")}> Switch name - second way </button>
        
         
          <h2> <hr></hr>Two way communication between components</h2>
