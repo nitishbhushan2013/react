@@ -40,30 +40,29 @@ class App extends Component {
   customNameChangeHandler = (newName, newCompany) => {
     this.setState({
       persons : [
-        {name : newName, company : newCompany},
-        {name : "Matt", company : "Facebook"},
-        {name : "Arthur", company : "Macquarie"}
+        {id : 1, name : newName, company : newCompany},
+        {id : 2, name : "Matt", company : "Facebook"},
+        {id : 3, name : "Arthur", company : "Macquarie"}
       ]
     });
   }
 
-  /*
-  updateNameHandler = (index) => {
-    const persons = [...this.state.persons]; 
-    
-
+  updateNameHandler = (event, index) => {
+     const persons = [...this.state.persons]; // spread function will return the new array and will not alter the original array. 
+     persons[index].name = event.target.value;
+     this.setState({
+        persons : persons
+     })
   }
- 
-  updateCompanyHandler = (event) => {
+  
+  updateCompanyHandler = (event, index) => {
+    const persons = [...this.state.persons];  
+    persons[index].company = event.target.value;
     this.setState({
-      persons : [
-        {name : "Nitish", company : event.target.value},
-        {name : "Matt", company : "Facebook"},
-        {name : "Arthur", company : "DropBox"}
-      ]
+       persons : persons
     })
-  }
-*/
+ }
+
   deleteUserHandler = (index) => {
     const persons = [...this.state.persons]; 
     persons.splice(index,1);
@@ -108,11 +107,12 @@ class App extends Component {
             // curly base indicates that it contains js element or logic
              this.state.persons.map((person, index) => {
                return <Person 
+                  key = {person.id}
                   name = {person.name} 
                   company = {person.company}
+                  updateName = {(event) => this.updateNameHandler(event, index)} // since its onChange event, so it accept event as a function prameter. 
+                  updateCompany = {(event) => this.updateCompanyHandler(event, index)}
                   deleteUser = {() => this.deleteUserHandler(index)}
-                 // updateName = {() => this.updateNameHandler(index, event.target.value)}
-                //  updateCompany = {() => this.updateCompanyHandler(index)}
                 />
              })   
             }
