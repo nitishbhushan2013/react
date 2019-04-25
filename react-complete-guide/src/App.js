@@ -80,9 +80,8 @@ class App extends Component {
  
 
 
-// when ever state value changes, react would re-render the component or rather update the view.
+// when ever state value changes, react would re-render the component or rather update the view. It executes render() and not the return(). 
   render() {
-
     const style ={
       backgroundColor : 'light green',
       border : '1px solid blue',
@@ -92,47 +91,45 @@ class App extends Component {
       cursor : 'pointer'
     }
 
+    // This is more elegant way to handle dynamic content 
+    //When state changes, react would execute render() which would exdcute return funtion to update the view. 
+    // Since react executes render(), We can even build some logic inside render() that would dynalically update the view content. 
+    let persons = null;
+
+    if(this.state.showPerson) {
+      persons = 
+          <div>
+          <Person 
+            name = {this.state.persons[0].name} 
+            company = {this.state.persons[0].company} 
+            click = {this.nameChangeHandler}
+            updateName = {this.updateNameHandler1}
+            updateCompany = {this.updateCompanyHandler1}
+          />
+          <Person 
+            name = {this.state.persons[1].name} 
+            company = {this.state.persons[1].company}
+            />
+          <Person 
+            name = {this.state.persons[2].name} 
+            company = {this.state.persons[2].company}> Arthur stay at Sydney. </Person>
+        </div> 
+    }
+
     return (
       <div className="App">
 
-    
-      { // In react, any thing inside curly braces is a javascript and ideally react allow us to stite htm,l inside js as a jsx syntax. We take advantage of above two facts to write conditional statement. It accept ternary syntax and does not accept if clause. 
-      //execute ternery conditional statement based on state value
-// Wrap needed component inside the curly braces, all wrapped inside a root div to ddefine the body. 
-        this.state.showPerson ?
-          <div>
-            <Person 
-              name = {this.state.persons[0].name} 
-              company = {this.state.persons[0].company} 
-              click = {this.nameChangeHandler}
-              updateName = {this.updateNameHandler1}
-              updateCompany = {this.updateCompanyHandler1}
-            />
-
-            <Person 
-              name = {this.state.persons[1].name} 
-              company = {this.state.persons[1].company}
-              />
-
-            <Person 
-              name = {this.state.persons[2].name} 
-              company = {this.state.persons[2].company}> Arthur stay at Sydney. </Person>
-          </div> : null
-      }
-
+        {persons}
         <button 
           style = {style} 
           onClick = {this.toggleName}  > Toggle Name </button>
-
          <button 
           style = {style}
           onClick = {this.nameChangeHandler} > Switch Name - first way 
-         </button>
-         
+         </button>         
          <button 
           style = {style} 
-          onClick = {this.customNameChangeHandler.bind(this, "Mr. Nitish Bhushan", "Google HQ")} > Custom Name </button>
-        
+          onClick = {this.customNameChangeHandler.bind(this, "Mr. Nitish Bhushan", "Google HQ")} > Custom Name </button>        
          <button 
           style = {style} 
           onClick = { () => this.customNameChangeHandler("Mr. Andrew Kasis", "Macquarie")}> Switch name - second way </button>
