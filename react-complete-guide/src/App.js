@@ -14,11 +14,19 @@ class App extends Component {
     employee : [
       {name : "Mathew Phil"},
       {name : "Scott Morrison"}
-    ]
+    ],
+    showPerson : true
   }
  // we call this.setState() to pass the updated object. React will then compare the old
  // and new value to discover the update and accordingly would update ONLY the changed part. 
+ toggleName = () => {
+    const doesShow = this.state.showPerson;
+    this.setState({
+       showPerson : !doesShow 
+    });
   
+ }
+
   nameChangeHandler = () => {
     this.setState({
       persons : [
@@ -86,33 +94,51 @@ class App extends Component {
 
     return (
       <div className="App">
-         <Person 
-           name = {this.state.persons[0].name} 
-           company = {this.state.persons[0].company} 
-           click = {this.nameChangeHandler}
-           updateName = {this.updateNameHandler1}
-           updateCompany = {this.updateCompanyHandler1}
-         />
 
-         <Person 
-          name = {this.state.persons[1].name} 
-          company = {this.state.persons[1].company}
-          />
+    
+      { // In react, any thing inside curly braces is a javascript and ideally react allow us to stite htm,l inside js as a jsx syntax. We take advantage of above two facts to write conditional statement. It accept ternary syntax and does not accept if clause. 
+      //execute ternery conditional statement based on state value
+// Wrap needed component inside the curly braces, all wrapped inside a root div to ddefine the body. 
+        this.state.showPerson ?
+          <div>
+            <Person 
+              name = {this.state.persons[0].name} 
+              company = {this.state.persons[0].company} 
+              click = {this.nameChangeHandler}
+              updateName = {this.updateNameHandler1}
+              updateCompany = {this.updateCompanyHandler1}
+            />
 
-         <Person 
-          name = {this.state.persons[2].name} 
-          company = {this.state.persons[2].company}> Arthur stay at Sydney. </Person>
+            <Person 
+              name = {this.state.persons[1].name} 
+              company = {this.state.persons[1].company}
+              />
+
+            <Person 
+              name = {this.state.persons[2].name} 
+              company = {this.state.persons[2].company}> Arthur stay at Sydney. </Person>
+          </div> : null
+      }
+
+        <button 
+          style = {style} 
+          onClick = {this.toggleName}  > Toggle Name </button>
 
          <button 
-         style = {style}
-         onClick = {this.nameChangeHandler} > Switch Name - first way 
+          style = {style}
+          onClick = {this.nameChangeHandler} > Switch Name - first way 
          </button>
          
-         <button style = {style} onClick = {this.customNameChangeHandler.bind(this, "Mr. Nitish Bhushan", "Google HQ")} > Custom Name </button>
+         <button 
+          style = {style} 
+          onClick = {this.customNameChangeHandler.bind(this, "Mr. Nitish Bhushan", "Google HQ")} > Custom Name </button>
         
-         <button style = {style} onClick = { () => this.customNameChangeHandler("Mr. Andrew Kasis", "Macquarie")}> Switch name - second way </button>
-       
+         <button 
+          style = {style} 
+          onClick = { () => this.customNameChangeHandler("Mr. Andrew Kasis", "Macquarie")}> Switch name - second way </button>
+      
         
+
          <h2> <hr></hr>Two way communication between components</h2>
          <Emp 
             name = {this.state.employee[0].name}
