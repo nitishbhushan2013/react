@@ -47,7 +47,7 @@ class App extends Component {
     });
   }
 
-  updateNameHandler1 = (event) => {
+  updateNameHandler = (event) => {
     this.setState({
       persons : [
         {name : event.target.value, company : "Google"},
@@ -57,7 +57,7 @@ class App extends Component {
     })
   }
  
-  updateCompanyHandler1 = (event) => {
+  updateCompanyHandler = (event) => {
     this.setState({
       persons : [
         {name : "Nitish", company : event.target.value},
@@ -98,21 +98,16 @@ class App extends Component {
 
     if(this.state.showPerson) {
       persons = 
-          <div>
-          <Person 
-            name = {this.state.persons[0].name} 
-            company = {this.state.persons[0].company} 
-            click = {this.nameChangeHandler}
-            updateName = {this.updateNameHandler1}
-            updateCompany = {this.updateCompanyHandler1}
-          />
-          <Person 
-            name = {this.state.persons[1].name} 
-            company = {this.state.persons[1].company}
-            />
-          <Person 
-            name = {this.state.persons[2].name} 
-            company = {this.state.persons[2].company}> Arthur stay at Sydney. </Person>
+          <div> 
+            {
+            // curly base indicates that it contains js element or logic
+             this.state.persons.map(person => {
+               return <Person 
+                  name = {person.name} 
+                  company = {person.company}
+                />
+             })   
+            }
         </div> 
     }
 
