@@ -101,6 +101,13 @@ class App extends Component {
     //When state changes, react would execute render() which would exdcute return funtion to update the view. 
     // Since react executes render(), We can even build some logic inside render() that would dynalically update the view content. 
     let persons = null;
+    let classes  = ['Person', 'Green'];
+    
+    if(this.state.persons.length ===2)
+     classes = ['Person', 'Red'];
+    else if(this.state.persons.length ===1)
+    classes = ['Person', 'Red', 'Bold'];
+
 
     if(this.state.showPerson) {
       persons = 
@@ -115,6 +122,7 @@ class App extends Component {
                   updateName = {(event) => this.updateNameHandler(event, index)} // since its onChange event, so it accept event as a function prameter. 
                   updateCompany = {(event) => this.updateCompanyHandler(event, index)}
                   deleteUser = {() => this.deleteUserHandler(index)}
+                  style = {classes}
                 />
              })   
             }

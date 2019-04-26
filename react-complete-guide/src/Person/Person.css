@@ -8,3 +8,14 @@
     margin-bottom: 1 px;
     margin-top: 1%;
 }
+.Green {
+    color : green;
+}
+
+.Red {
+    color :  red;
+}
+
+.Bold {
+    font-weight: bold;
+}

@@ -3,8 +3,13 @@ import './Person.css'
 
 // This is dynamic template
 const person = (props) => {
+
+    
+    
+
         return ( 
-            <div className="Person"> 
+            
+            <div className={props.style.join(' ')}> 
                 <h3 onClick = {props.click}> My name is {props.name} and I work at {props.company}. </h3>
                 <h4> Name : <input type='text' onChange = {props.updateName}  defaultValue = {props.name}/></h4> 
                 <h4> Company : <input type='text' onChange = {props.updateCompany}  defaultValue = {props.company}/></h4> 
