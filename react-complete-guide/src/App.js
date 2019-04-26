@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person';
 import Emp from './Employee/Employee';
+import { whileStatement } from 'babel-types';
 
 class App extends Component {
   state = { // state is an object 
@@ -87,7 +88,8 @@ class App extends Component {
 // when ever state value changes, react would re-render the component or rather update the view. It executes render() and not the return(). 
   render() {
     const style ={
-      backgroundColor : 'light green',
+      backgroundColor : 'red',
+      color : 'white',
       border : '1px solid blue',
       margin : '1%',
      
@@ -117,6 +119,8 @@ class App extends Component {
              })   
             }
         </div> 
+
+        style.backgroundColor = 'green';
     }
 
     return (
