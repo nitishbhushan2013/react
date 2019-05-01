@@ -104,7 +104,7 @@ class App extends Component {
     let classes  = ['Person', 'Green'];
     
     if(this.state.persons.length ===2)
-     classes = ['Person', 'Red'];
+     classes = ['Person', 'Orange'];
     else if(this.state.persons.length ===1)
     classes = ['Person', 'Red', 'Bold'];
 

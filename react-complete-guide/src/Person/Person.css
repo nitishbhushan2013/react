@@ -16,6 +16,9 @@
     color :  red;
 }
 
+.Orange {
+    color : rgb(255, 0, 140)
+}
 .Bold {
     font-weight: bold;
 }
