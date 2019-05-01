@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import Person from './Person/Person';
+import Person from '../components/Persons/Person/Person';
 
 const AppFuncComp = (props) => {
   // first element is orginal property object and second element is method to 

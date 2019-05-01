@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
 import './App.css';
-import Person from './Person/Person';
-import Emp from './Employee/Employee';
+import Persons from '../components/Persons/Persons';
+import Emp from '../components/Employee/Employee';
+import Cockpit from '../components/Cockpit/Cockpit';
 import { whileStatement } from 'babel-types';
 
 class App extends Component {
@@ -112,50 +113,30 @@ class App extends Component {
     if(this.state.showPerson) {
       persons = 
           <div> 
-            {
-            // curly base indicates that it contains js element or logic
-             this.state.persons.map((person, index) => {
-               return <Person 
-                  key = {person.id}
-                  name = {person.name} 
-                  company = {person.company}
-                  updateName = {(event) => this.updateNameHandler(event, index)} // since its onChange event, so it accept event as a function prameter. 
-                  updateCompany = {(event) => this.updateCompanyHandler(event, index)}
-                  deleteUser = {() => this.deleteUserHandler(index)}
-                  style = {classes}
-                />
-             })   
-            }
+            <Persons 
+              persons={this.state.persons}
+              updateName={this.updateNameHandler}
+              updateCompany={this.updateCompanyHandler}
+              delete={this.deleteUserHandler}
+              classes={classes}
+            />
         </div> 
-
         style.backgroundColor = 'green';
     }
 
     return (
       <div className="App">
-
         {persons}
-        <button 
-          style = {style} 
-          onClick = {this.toggleName}  > Toggle Name </button>
-         <button 
-          style = {style}
-          onClick = {this.nameChangeHandler} > Switch Name - first way 
-         </button>         
-         <button 
-          style = {style} 
-          onClick = {this.customNameChangeHandler.bind(this, "Mr. Nitish Bhushan", "Google HQ")} > Custom Name </button>        
-         <button 
-          style = {style} 
-          onClick = { () => this.customNameChangeHandler("Mr. Andrew Kasis", "Macquarie")}> Switch name - second way </button>
-      
-        
+        <Cockpit
+          toggleName={this.toggleName}
+          nameChangeHandler={this.nameChangeHandler}
+          customNameChangeHandler={this.customNameChangeHandler}
+        />
 
-         <h2> <hr></hr>Two way communication between components</h2>
          <Emp 
             name = {this.state.employee[0].name}
             changed = {this.updateEmployee}
-         /> 
+         />
       </div>
     );
   }
