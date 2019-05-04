@@ -1,6 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 const cockpit = (props) => {
+
+    useEffect (()=>{
+      console.log("cockpit.js | useEffect"); 
+    }, []);
+    
+
     const style ={
         backgroundColor : 'red',
         color : 'white',
