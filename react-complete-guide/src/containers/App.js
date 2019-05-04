@@ -12,9 +12,18 @@ import Cockpit from '../components/Cockpit/Cockpit';
 *      render()
 *     componentDidMount()
 */
+
+/*  Component update 
+*     static getDerivedStateFromProps()
+*      shouldComponentUpdate(nextProps, nextState) : Allow us to cancel the update or rendering process. used cautionaly to get performance boost or cancel unnecesary rendering. 
+*      render() ==> update child cpomponents states 
+*     getSnapshotBeforeUpdate(prevProps, prevState) : Allow us to get the user scrolling position or any DOM state before the update so that we might adjust the UI view and user scrolling position as it was earlier before update. 
+*     componentDidUpdate() - may be used to call the HTTP req method but MUST not call setState() synchronously as it may un necessary re render the view. SetState() may be used as a result of Async process though. 
+*/
 class App extends Component {
   //construct lifycycle -1
   constructor(props) {
+    console.log("[App.js] constructor...");
     super(props);
     this.state = { // state is an object 
       persons : [
@@ -30,10 +39,7 @@ class App extends Component {
     }
   }
   
-  //construct lifycycle -2
-  static getDerivedStateFromProps(props, state) {
-    console.log("getDerivedStateFromProps-->"+state);
-  }
+ 
  // we call this.setState() to pass the updated object. React will then compare the old
  // and new value to discover the update and accordingly would update ONLY the changed part. 
  toggleName = () => {
@@ -99,11 +105,33 @@ class App extends Component {
   }
   
  
+// creation life cycle hook - 2
+  // update life cycle hook - 1
+  /* static getDerivedStateFromProps(nextProps, prevState) {
+    console.log("[App.js] getDerivedStateFromProps...");
+    return this.state;
+  }
+  */
 
+  // update life cycle hook - 2
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("[App.js] shouldComponentUpdate...");
+    // we must evaluate state and returns either true or false 
+    return true;
+  }
+
+  // update life cycle hook - 3
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log("[App.js] getSnapshotBeforeUpdate...");
+  }
+
+  
 
 // when ever state value changes, react would re-render the component or rather update the view. It executes render() and not the return(). 
-  //construct lifycycle -3
+  // creation life cycle hook - 3
+  // update life cycle hook - 4
   render() {
+    console.log("[App.js] render...");
     const style ={
       backgroundColor : 'red',
       color : 'white',
@@ -157,9 +185,13 @@ class App extends Component {
     );
   }
 
-  //construct lifycycle -4
-  componentDidMount(){
-    console.log("component mounted successfully");
+  // creation life cycle hook - 4
+  componentDidMount() {
+    console.log("[App.js] componentDidMount...");
+  }
+  // update life cycle hook - 5
+  componentDidUpdate(prevProps, prevState) {
+    console.log("[App.js] componentDidUpdate...");
   }
 }
 
