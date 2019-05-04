@@ -4,20 +4,35 @@ import './App.css';
 import Persons from '../components/Persons/Persons';
 import Emp from '../components/Employee/Employee';
 import Cockpit from '../components/Cockpit/Cockpit';
-import { whileStatement } from 'babel-types';
 
+
+/*  Component Creation 
+*     constructor()
+*     static getDerivedStateFromProps()
+*      render()
+*     componentDidMount()
+*/
 class App extends Component {
-  state = { // state is an object 
-    persons : [
-      {name : "Nitish", company : "Google"},
-      {name : "Matt", company : "Facebook"},
-      {name : "Arthur", company : "DropBox"}
-    ],
-    employee : [
-      {name : "Mathew Phil"},
-      {name : "Scott Morrison"}
-    ],
-    showPerson : true
+  //construct lifycycle -1
+  constructor(props) {
+    super(props);
+    this.state = { // state is an object 
+      persons : [
+        {name : "Nitish", company : "Google"},
+        {name : "Matt", company : "Facebook"},
+        {name : "Arthur", company : "DropBox"}
+      ],
+      employee : [
+        {name : "Mathew Phil"},
+        {name : "Scott Morrison"}
+      ],
+      showPerson : true
+    }
+  }
+  
+  //construct lifycycle -2
+  static getDerivedStateFromProps(props, state) {
+    console.log("getDerivedStateFromProps-->"+state);
   }
  // we call this.setState() to pass the updated object. React will then compare the old
  // and new value to discover the update and accordingly would update ONLY the changed part. 
@@ -87,6 +102,7 @@ class App extends Component {
 
 
 // when ever state value changes, react would re-render the component or rather update the view. It executes render() and not the return(). 
+  //construct lifycycle -3
   render() {
     const style ={
       backgroundColor : 'red',
@@ -139,6 +155,11 @@ class App extends Component {
          />
       </div>
     );
+  }
+
+  //construct lifycycle -4
+  componentDidMount(){
+    console.log("component mounted successfully");
   }
 }
 
