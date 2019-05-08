@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import './Person.css'
+import React, {PureComponent} from 'react';
+import styles from './Person.module.css'
 
-class Person extends Component {
+class Person extends PureComponent {
 
 
     state = {};  

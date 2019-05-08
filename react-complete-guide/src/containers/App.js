@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-import './App.css';
+import styles from './App.module.css';
 import Persons from '../components/Persons/Persons';
 import Emp from '../components/Employee/Employee';
 import Cockpit from '../components/Cockpit/Cockpit';
@@ -20,7 +20,7 @@ import Cockpit from '../components/Cockpit/Cockpit';
 *     getSnapshotBeforeUpdate(prevProps, prevState) : Allow us to get the user scrolling position or any DOM state before the update so that we might adjust the UI view and user scrolling position as it was earlier before update. 
 *     componentDidUpdate() - may be used to call the HTTP req method but MUST not call setState() synchronously as it may un necessary re render the view. SetState() may be used as a result of Async process though. 
 */
-class App extends Component {
+class App extends PureComponent {
   //construct lifycycle -1
   constructor(props) {
     console.log("[App.js] constructor...");
@@ -169,7 +169,7 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
+      <div className={styles.App}>
         {persons}
         <Cockpit
           toggleName={this.toggleName}
