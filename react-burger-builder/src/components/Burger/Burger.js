@@ -13,11 +13,14 @@ const burger = (props)=>{
 
     
     return(
-        <div className={styles.Burger}>
-            <BurgerIngredient type="bread-top"/>
-            {transformedIngredients}
-            <BurgerIngredient type="bread-bottom"/>
-        </div>
+        <React-Fragement>
+            <div className={styles.Burger}>
+                <BurgerIngredient type="bread-top"/>
+                {transformedIngredients}
+                <BurgerIngredient type="bread-bottom"/>
+            </div>
+            <div>price details : {props.totalPrice}</div>
+        </React-Fragement> 
     );
 }
 
