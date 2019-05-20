@@ -30,6 +30,16 @@ class BurgerBuilder extends Component {
         let updatedPrice = this.state.totalPrice;
         updatedPrice = updatedPrice + INGREDIENT_PRICE[type];
 
+        let currentState = {...this.state.ingredients};
+        let currentStateArray = Object.keys(currentState);
+        //alert(currentStateArray);
+        
+        const sum = currentStateArray.reduce(item=>{
+            return currentState[item];
+        })
+        
+
+
         // updating state
         this.setState({
             ingredients : updatedIngredient,
@@ -68,6 +78,15 @@ class BurgerBuilder extends Component {
             return false;    
         }    
     }
+
+    purchaseStatus = ()=>{
+        let currentState = {...this.state.ingredients};
+        const newArray = currentState.map(item=>{
+            return currentState[item];
+        })
+        alert(newArray);
+        return true;
+    }
     //life cycle method
    render(){
 
@@ -84,6 +103,7 @@ class BurgerBuilder extends Component {
                         addIngredient = {this.addIngredient}
                         removeIngredient = {this.removeIngredient}
                         isDisabled = {disabledInfo}
+                        purchaseStatus={this.purchaseStatus}
                         />
                </div>
            </Aux>

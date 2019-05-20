@@ -18,8 +18,9 @@ const burger = (props)=>{
                 <BurgerIngredient type="bread-top"/>
                 {transformedIngredients}
                 <BurgerIngredient type="bread-bottom"/>
+                <div>price details : {props.totalPrice}</div>
             </div>
-            <div>price details : {props.totalPrice}</div>
+           
         </React-Fragement> 
     );
 }

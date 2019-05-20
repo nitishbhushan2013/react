@@ -11,20 +11,27 @@ const control = [
 
 const buildControls = (props) =>{
     return(
-        <div className={styles.BuildControls}>
-        {
-            control.map(ctrl => (
-                 <BuildControl 
-                 key={ctrl.label}
-                label={ctrl.label}
-                addIngredient={()=> props.addIngredient(ctrl.type)}
-                removeIngredient= {()=> props.removeIngredient(ctrl.type)}
-                isDisabled={()=>props.isDisabled[ctrl.type]}
-                />
-            ))
-        }
-        
-        </div>
+        <React.Fragment>
+            <div className={styles.BuildControls}>
+            {
+                control.map(ctrl => (
+                    <BuildControl 
+                    key={ctrl.label}
+                    label={ctrl.label}
+                    addIngredient={()=> props.addIngredient(ctrl.type)}
+                    removeIngredient= {()=> props.removeIngredient(ctrl.type)}
+                    isDisabled={()=>props.isDisabled[ctrl.type]}
+                    />
+                ))
+            }
+
+            <div className={styles.OrderButton}>
+                <button name="OrderNow" 
+                >OrderNow</button>
+            </div>
+            </div>
+            
+        </React.Fragment>     
     );
     };
 
