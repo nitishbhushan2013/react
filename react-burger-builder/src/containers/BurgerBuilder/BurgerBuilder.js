@@ -18,7 +18,8 @@ class BurgerBuilder extends Component {
             bacon:0,
             cheese:0
         },
-        totalPrice :10
+        totalPrice :10,
+        show : false
     }
 
     addIngredient=(type)=>{
@@ -33,10 +34,9 @@ class BurgerBuilder extends Component {
         let currentState = {...this.state.ingredients};
         let currentStateArray = Object.keys(currentState);
         //alert(currentStateArray);
-        
-        const sum = currentStateArray.reduce(item=>{
-            return currentState[item];
-        })
+        //[salad, meat, bacon, cheese]
+       // currentStateArray.map((item)=> )
+       
         
 
 
@@ -71,7 +71,7 @@ class BurgerBuilder extends Component {
 
     isDisabled = (type)=>{
         if(this.state.ingredients[type] === 0) {
-            alert(1)
+           // alert(1)
             return true;
         }   
         else{    
@@ -84,8 +84,16 @@ class BurgerBuilder extends Component {
         const newArray = currentState.map(item=>{
             return currentState[item];
         })
-        alert(newArray);
+       // alert(newArray);
         return true;
+    }
+
+    showModalHandler = ()=>{
+        this.setState({show: true})
+    }
+
+    toggleModalhandler = ()=>{
+        this.setState({show: false})
     }
     //life cycle method
    render(){
@@ -104,6 +112,11 @@ class BurgerBuilder extends Component {
                         removeIngredient = {this.removeIngredient}
                         isDisabled = {disabledInfo}
                         purchaseStatus={this.purchaseStatus}
+                        ingredients = {this.state.ingredients}
+                        toggleModal = {this.toggleModalhandler}
+                        show= {this.state.show}
+                        showModal = {this.showModalHandler}
+                        
                         />
                </div>
            </Aux>
