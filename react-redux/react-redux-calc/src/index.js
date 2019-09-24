@@ -3,10 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import CalReducer from './Reducers/CalReducer/CalReducer';
 
-ReactDOM.render(<App />, document.getElementById('root'));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+
+
+ // createStore will accept reducer and give us a new store 
+ const store = createStore(CalReducer);
+
+ // Provider will inject store to the react application , we need to wrap highest container with Provider and pass the store which then will be available to the container.
+
+ReactDOM.render(
+<Provider store={store}>
+    <App />
+ </Provider>, document.getElementById('root')); // store is available to entire application
+
 

@@ -1,12 +1,12 @@
 //get the redux 
 const {createStore} = require('redux');
 
-//get the state
+//1. get the state
 const initialState = {
     count:10
 }
 
-//define reducer : feducer takes two parameters : state and action
+//2. define reducer : feducer takes two parameters : state and action
 const myReducer = ((state=initialState, action)=>{ // ES6 : provide default value to state
     //get new state
     const newState = {...initialState}; // ES6 : Spread operator
@@ -26,15 +26,15 @@ const myReducer = ((state=initialState, action)=>{ // ES6 : provide default valu
     return newState; // always returns updated state
 })
 
-// define store : it takes reducer as a parameter
+// 3. define store : it takes reducer as a parameter
 const myStore = createStore(myReducer);
 
-// subscribe will accept function and it will be called when ever there is state change
+// 4. subscribe will accept function and it will be called when ever there is state change
 myStore.subscribe(()=>{
     console.log("state changed "+JSON.stringify(myStore.getState()));
 });
 //
-//perform action, passing the payload 
+//5. perform action, passing the payload 
 myStore.dispatch({type: 'add',val:10}) // 'add' is action pass to reducer
 //console.log("add action : "+JSON.stringify(myStore.getState()));
 
