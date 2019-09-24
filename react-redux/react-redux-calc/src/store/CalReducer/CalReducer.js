@@ -5,7 +5,8 @@ We define the initial State and reducer function
 const initialState = {
     firstNum: 40,
     secondNum: 10,
-    result : 0
+    result : 0,
+    pastResults :[]
 }
 
 /**
@@ -20,6 +21,8 @@ const reducer = (state = initialState, action) => {
     switch(action.type){
         case 'ADD':
             newState.result = newState.firstNum + newState.secondNum;
+           // newState.pastResults.push(newState.result);
+            newState.pastResults.concat(newState.result)
             break;
         case 'SUB':
             newState.result = newState.firstNum - newState.secondNum;
@@ -30,7 +33,7 @@ const reducer = (state = initialState, action) => {
          default:
             break;     
     }
-
+console.log(JSON.stringify(newState));
     return newState;
 }
 

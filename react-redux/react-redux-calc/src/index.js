@@ -5,7 +5,7 @@ import App from './App';
 
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-import CalReducer from './Reducers/CalReducer/CalReducer';
+import CalReducer from './store/CalReducer/CalReducer';
 
 
 
